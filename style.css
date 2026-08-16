@@ -1,0 +1,192 @@
+/* Style volontairement minimal — le rendu visuel final sera repris ailleurs.
+   Ici on veut juste que ce soit lisible et utilisable pour tester le jeu. */
+
+body {
+  font-family: system-ui, sans-serif;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 16px;
+  background: #14161f;
+  color: #eee;
+}
+
+h1, h2, h3 { margin-top: 0; }
+
+button {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin: 6px 0;
+  font-size: 15px;
+  border: none;
+  border-radius: 8px;
+  background: #d9a441;
+  color: #1a1a1a;
+  cursor: pointer;
+}
+
+button.secondaire {
+  background: #333;
+  color: #eee;
+}
+
+button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 6px 0;
+  border-radius: 6px;
+  border: 1px solid #444;
+  background: #1f2230;
+  color: #eee;
+  font-size: 14px;
+}
+
+.carte {
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 12px;
+  margin: 10px 0;
+  background: #1c1f2b;
+}
+
+.section-titre {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #d9a441;
+  margin: 18px 0 6px;
+}
+
+.ligne-joueur {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid #2a2d3a;
+  font-size: 14px;
+}
+
+.mort { text-decoration: line-through; opacity: 0.5; }
+.badge-maire { color: #d9a441; font-size: 11px; margin-left: 6px; }
+
+.chat-fil {
+  max-height: 160px;
+  overflow-y: auto;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 8px;
+  background: #10121a;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.chat-msg b { color: #d9a441; }
+
+.timer {
+  font-size: 26px;
+  text-align: center;
+  font-family: monospace;
+  color: #d9a441;
+}
+
+.log {
+  font-size: 12px;
+  color: #999;
+  white-space: pre-wrap;
+}
+
+/* ---- Avatars ---- */
+.avatar-rond {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #d9a441;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+.avatar-placeholder {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #333;
+  color: #d9a441;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+#avatar-preview img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #d9a441;
+  margin-top: 6px;
+}
+
+/* ---- Lettre scellée (animation du vote) ---- */
+.letter-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 6, 10, 0.9);
+  border-radius: 10px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 40;
+}
+.letter-overlay.show { display: flex; }
+.parchment-note {
+  width: 140px;
+  height: 90px;
+  background: #EDE3CB;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #221B10;
+  box-shadow: 0 8px 24px rgba(0,0,0,.5);
+  animation: writeFold 2.2s ease forwards;
+}
+@keyframes writeFold {
+  0% { transform: scale(1); }
+  45% { transform: scale(1); }
+  60% { transform: scaleY(.5) translateY(10px); }
+  75% { transform: scaleY(.12) translateY(20px); width: 70px; border-radius: 2px; }
+  100% { transform: scaleY(.12) translateY(-70px); width: 70px; opacity: 0; }
+}
+.wax-seal {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #b5424e, #8c2f39 70%);
+  box-shadow: 0 3px 10px rgba(0,0,0,.5);
+  opacity: 0;
+  animation: stamp .5s ease 1.3s forwards;
+}
+@keyframes stamp {
+  0% { opacity: 0; transform: scale(2); }
+  60% { opacity: 1; transform: scale(.9); }
+  100% { opacity: 1; transform: scale(1); }
+}
+.sent-caption {
+  margin-top: 110px;
+  font-size: 11px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #d9a441;
+  opacity: 0;
+  animation: appear .4s ease 1.9s forwards;
+}
+@keyframes appear { to { opacity: 1; } }
