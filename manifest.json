@@ -1,9 +1,0 @@
-{
-  "name": "Loup-Garou Hybride",
-  "short_name": "Loup-Garou",
-  "start_url": "/index.html",
-  "display": "standalone",
-  "background_color": "#14161f",
-  "theme_color": "#d9a441",
-  "icons": []
-}
