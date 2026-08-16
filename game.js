@@ -34,6 +34,7 @@ function creerPartie(mjSocketId) {
   return {
     code: genererCodePartie(),
     mjSocketId,
+    mjToken: randomUUID(), // permet au MJ de reprendre le contrôle après une déconnexion
     state: 'lobby', // lobby | nuit | jour | vote | terminee
     jourIndex: 0,
     voteMode: 'anonyme', // anonyme | public
@@ -51,12 +52,13 @@ function creerPartie(mjSocketId) {
   };
 }
 
-function creerJoueur(socketId, prenom, cartePhysique) {
+function creerJoueur(socketId, prenom, cartePhysique, avatarData) {
   return {
     id: randomUUID(),
     socketId,
     prenom,
     cartePhysique,
+    avatarData: avatarData || null,
     pouvoirNumerique: null,
     statut: 'vivant', // vivant | mort
     quartierId: null,
@@ -243,6 +245,7 @@ function vuePublique(partie) {
     joueurs: [...partie.joueurs.values()].map((j) => ({
       id: j.id,
       prenom: j.prenom,
+      avatarData: j.avatarData,
       statut: j.statut,
       estMaire: j.estMaire,
       connected: j.connected,
